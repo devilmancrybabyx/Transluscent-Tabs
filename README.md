@@ -5,7 +5,7 @@
 **The Modern Windows Explorer Blur, Acrylic & Mica Studio**
 
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%20Windows%2011-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/devilmancrybabyx/Transluscent-Tabs)
-[![Release](https://img.shields.io/badge/Release-v1.0.0%20Standalone%20EXE-6366F1?style=for-the-badge&logo=github&logoColor=white)](https://github.com/devilmancrybabyx/Transluscent-Tabs/tree/main/release)
+[![Release](https://img.shields.io/badge/Release-v1.0.0%20Standalone%20EXE-6366F1?style=for-the-badge&logo=github&logoColor=white)](https://github.com/devilmancrybabyx/Transluscent-Tabs/releases/tag/v1.0.0)
 [![License](https://img.shields.io/badge/License-LGPL--3.0-10B981?style=for-the-badge)](https://github.com/Maplespe/ExplorerBlurMica)
 [![UI/UX](https://img.shields.io/badge/Design-Fluent%20Glassmorphism-8B5CF6?style=for-the-badge)](https://github.com/devilmancrybabyx/Transluscent-Tabs)
 
@@ -13,7 +13,7 @@
   A sleek, modern Fluent UI controller designed to inject hardware-accelerated <b>Blur</b>, <b>Acrylic</b>, and <b>Mica</b> transparency into Windows File Explorer tabs, window surfaces, and toolbars — with instantaneous <b>Do (Apply)</b> and <b>Undo (Revert)</b> actions.
 </p>
 
-[**Download Release (.exe)**](https://github.com/devilmancrybabyx/Transluscent-Tabs/tree/main/release) • [**Quick Start**](#-quick-start) • [**Effect Styles**](#-supported-effects) • [**Customization**](#-fine-tuning--rgba-studio) • [**Author Links**](#-connect--author)
+[**Download Release (.exe)**](https://github.com/devilmancrybabyx/Transluscent-Tabs/releases/tag/v1.0.0) • [**Quick Start**](#-quick-start) • [**Effect Styles**](#-supported-effects) • [**Customization**](#-fine-tuning--rgba-studio) • [**Author Links**](#-connect--author)
 
 ---
 
@@ -73,8 +73,8 @@
 
 ### Option 1: Standalone Executable (Recommended)
 
-1. Head over to the [`release/`](https://github.com/devilmancrybabyx/Transluscent-Tabs/tree/main/release) directory.
-2. Download **`TranslucentTabs.exe`** (or grab the zip archive `TranslucentTabs-v1.0.0-Windows-x64.zip`).
+1. Head over to the [**Official GitHub Releases (v1.0.0)**](https://github.com/devilmancrybabyx/Transluscent-Tabs/releases/tag/v1.0.0) page.
+2. Download **`TranslucentTabs.exe`** (or download the full portable zip archive `TranslucentTabs-v1.0.0-Windows-x64.zip`).
 3. Run `TranslucentTabs.exe`. When prompted by Windows UAC for applying or undoing effects, approve administrator rights to register/unregister the COM DLL.
 
 ### Option 2: Run from Source
