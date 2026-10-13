@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TranslucentTabs - Explorer Blur & Mica Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient background lighting for glassmorphic depth -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-container">
+    <!-- Top App Navigation / Header -->
+    <header class="app-header">
+      <div class="header-branding">
+        <div class="app-logo">
+          <!-- Glass layers logo SVG -->
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h1 class="app-title">TranslucentTabs</h1>
+          <p class="app-subtitle">Windows Explorer Blur, Acrylic & Mica Studio</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live Status Pill -->
+        <div id="statusBadge" class="status-pill status-loading" title="Checking registration state...">
+          <span class="status-dot"></span>
+          <span id="statusText">Checking...</span>
+        </div>
+
+        <!-- Admin Indicator Pill -->
+        <div id="adminBadge" class="admin-pill" title="Process privilege level">
+          <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span id="adminText">User</span>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="icon-button" aria-label="Toggle theme" title="Toggle dark/light mode">
+          <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Link Settings Button -->
+        <button id="openLinksModalBtn" class="icon-button" aria-label="Edit personal links" title="Configure GitHub & Website links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Hero Action Center (DO & UNDO BLUR) -->
+    <section class="action-hero card glass-panel">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2 class="hero-title">File Explorer Transparency Control</h2>
+          <p class="hero-desc">
+            Instantly inject hardware-accelerated Acrylic blur, Windows 11 Mica, or clear glass transparency into Windows File Explorer tabs and window frames.
+          </p>
+          <div class="hero-status-details">
+            <span class="detail-tag" id="systemVersionTag">Windows 11</span>
+            <span class="detail-tag" id="activeEffectTag">Effect: Mica</span>
+            <span class="detail-tag" id="activeDllTag">DLL: Ready</span>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <!-- DO (APPLY) BUTTON -->
+          <button id="applyBtn" class="btn btn-primary btn-hero" title="Apply blur/mica effect and restart File Explorer">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
+            <span class="btn-label-group">
+              <span class="btn-main-label">Apply Blur Effect</span>
+              <span class="btn-sub-label">Register & Restart Explorer</span>
+            </span>
+          </button>
+
+          <!-- UNDO (REVERT) BUTTON -->
+          <button id="undoBtn" class="btn btn-revert btn-hero" title="Unregister blur/mica effect and restore native Windows explorer">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+            <span class="btn-label-group">
+              <span class="btn-main-label">Undo / Remove Effect</span>
+              <span class="btn-sub-label">Restore Default Stock Look</span>
+            </span>
+          </button>
+
+          <!-- RESTART EXPLORER BUTTON -->
+          <button id="restartExplorerBtn" class="btn btn-secondary" title="Manually restart explorer.exe process">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+            <span>Restart Explorer</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two-Column Studio Layout -->
+    <main class="studio-grid">
+      <!-- Left Column: Effect Type & Explorer Window Tweaks -->
+      <section class="studio-col">
+        <!-- Effect Mode Selector Card -->
+        <div class="card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <h3 class="card-title">Backdrop Effect Style</h3>
+            </div>
+            <span class="card-badge">config.ini [effect]</span>
+          </div>
+
+          <div class="effect-selector-grid">
+            <label class="effect-card" for="effect0">
+              <input type="radio" id="effect0" name="effectChoice" value="0">
+              <div class="effect-card-content">
+                <span class="effect-name">Blur</span>
+                <span class="effect-desc">Classic Gaussian blur backdrop</span>
+                <span class="effect-tag">Win10 / Early Win11</span>
+              </div>
+            </label>
+
+            <label class="effect-card" for="effect1">
+              <input type="radio" id="effect1" name="effectChoice" value="1">
+              <div class="effect-card-content">
+                <span class="effect-name">Acrylic</span>
+                <span class="effect-desc">Frosted translucent glass texture</span>
+                <span class="effect-tag">Fluent Design</span>
+              </div>
+            </label>
+
+            <label class="effect-card active" for="effect2">
+              <input type="radio" id="effect2" name="effectChoice" value="2" checked>
+              <div class="effect-card-content">
+                <span class="effect-name">Mica</span>
+                <span class="effect-desc">Signature dynamic wallpaper tint</span>
+                <span class="effect-tag">Win 11 Recommended</span>
+              </div>
+            </label>
+
+            <label class="effect-card" for="effect3">
+              <input type="radio" id="effect3" name="effectChoice" value="3">
+              <div class="effect-card-content">
+                <span class="effect-name">Blur (Clear)</span>
+                <span class="effect-desc">High clarity transparent glass</span>
+                <span class="effect-tag">High Transparency</span>
+              </div>
+            </label>
+
+            <label class="effect-card" for="effect4">
+              <input type="radio" id="effect4" name="effectChoice" value="4">
+              <div class="effect-card-content">
+                <span class="effect-name">MicaAlt</span>
+                <span class="effect-desc">Deeper tab & header contrast</span>
+                <span class="effect-tag">Win 11 Alternative</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Explorer Interface Tweaks -->
+        <div class="card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+              <h3 class="card-title">Explorer Interface Tweaks</h3>
+            </div>
+            <span class="card-badge">UI Transparency</span>
+          </div>
+
+          <div class="toggles-list">
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <span class="toggle-title">Transparent Address Bar</span>
+                <span class="toggle-desc">Removes solid background behind address & search fields (clearAddress)</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggleAddress" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <span class="toggle-title">Transparent Scrollbars & Bars</span>
+                <span class="toggle-desc">Custom translucent scrollbar and toolbar strip (clearBarBg)</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggleBarBg" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <span class="toggle-title">Clean WinUI / XAML Toolbar (Win 11)</span>
+                <span class="toggle-desc">Removes solid header strip in modern 23H2/24H2 Explorer (clearWinUIBg)</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggleWinUIBg" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <span class="toggle-title">Hide TreeView Splitter Line</span>
+                <span class="toggle-desc">Removes vertical border separating folder tree & file list (showLine)</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggleShowLine" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Color Tint Studio & Presets -->
+      <section class="studio-col">
+        <!-- Color Tint & Opacity Studio -->
+        <div class="card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a10 10 0 0 1 0 20v-20z"></path>
+              </svg>
+              <h3 class="card-title">RGBA Color Blend & Opacity</h3>
+            </div>
+            <!-- Mode Switcher Tabs -->
+            <div class="color-mode-tabs">
+              <button id="colorModeDarkBtn" class="tab-btn active">Dark Mode</button>
+              <button id="colorModeLightBtn" class="tab-btn">Light Mode</button>
+            </div>
+          </div>
+
+          <!-- Color Preview Box (Interactive Simulation) -->
+          <div class="preview-box-container">
+            <div class="simulated-explorer-window">
+              <div class="sim-header">
+                <div class="sim-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="sim-tab" id="simTabHeader">File Explorer</div>
+              </div>
+              <div class="sim-body" id="simPreviewSurface">
+                <div class="sim-sidebar"></div>
+                <div class="sim-content">
+                  <div class="sim-file-item"></div>
+                  <div class="sim-file-item"></div>
+                  <div class="sim-file-item short"></div>
+                </div>
+              </div>
+            </div>
+            <div class="swatch-info">
+              <span id="rgbaDisplay">rgba(0, 0, 0, 0.47)</span>
+              <span id="alphaPercentDisplay">47% Opacity</span>
+            </div>
+          </div>
+
+          <!-- Sliders -->
+          <div class="sliders-container">
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="slider-label">Red (R)</span>
+                <span class="slider-val" id="valR">0</span>
+              </div>
+              <input type="range" id="rangeR" min="0" max="255" value="0">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="slider-label">Green (G)</span>
+                <span class="slider-val" id="valG">0</span>
+              </div>
+              <input type="range" id="rangeG" min="0" max="255" value="0">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="slider-label">Blue (B)</span>
+                <span class="slider-val" id="valB">0</span>
+              </div>
+              <input type="range" id="rangeB" min="0" max="255" value="0">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="slider-label">Alpha / Opacity (A)</span>
+                <span class="slider-val" id="valA">120</span>
+              </div>
+              <input type="range" id="rangeA" min="0" max="255" value="120">
+            </div>
+          </div>
+        </div>
+
+        <!-- Presets -->
+        <div class="card glass-panel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <h3 class="card-title">Curated Presets</h3>
+            </div>
+          </div>
+
+          <div class="presets-grid">
+            <button class="preset-btn" data-preset="win11-default">
+              <span class="preset-name">Windows 11 Mica</span>
+              <span class="preset-sub">Standard Mica + Subtle Opacity</span>
+            </button>
+            <button class="preset-btn" data-preset="crystal-glass">
+              <span class="preset-name">Crystal Glass</span>
+              <span class="preset-sub">Clear Blur + High Transparency</span>
+            </button>
+            <button class="preset-btn" data-preset="acrylic-frosted">
+              <span class="preset-name">Frosted Acrylic</span>
+              <span class="preset-sub">Fluent Acrylic + Frosted Tint</span>
+            </button>
+            <button class="preset-btn" data-preset="midnight-stealth">
+              <span class="preset-name">Midnight Stealth</span>
+              <span class="preset-sub">MicaAlt + Deep Velvet Dark</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Quick Links & Author Footer (Prominent GitHub & Website Buttons) -->
+    <footer class="app-footer card glass-panel">
+      <div class="footer-left">
+        <span class="footer-title">Connect & Project Links</span>
+        <span class="footer-desc">Quickly visit developer profiles, repositories, and documentation.</span>
+      </div>
+
+      <div class="footer-buttons">
+        <!-- USER GITHUB BUTTON -->
+        <button id="userGithubBtn" class="link-btn github-btn" title="Visit My GitHub Page">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span id="userGithubLabel">My GitHub</span>
+        </button>
+
+        <!-- USER WEBSITE BUTTON -->
+        <button id="userWebsiteBtn" class="link-btn website-btn" title="Visit My Personal Website">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="userWebsiteLabel">My Website</span>
+        </button>
+
+        <!-- SOURCE REPO BUTTON -->
+        <button id="sourceRepoBtn" class="link-btn repo-btn" title="View ExplorerBlurMica upstream repository">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          <span>Source Repo</span>
+        </button>
+
+        <!-- EDIT LINKS BUTTON -->
+        <button id="editLinksBtn" class="link-btn edit-btn" title="Customize GitHub & Website URLs">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span>Edit Links</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Links Configuration Modal -->
+  <div id="linksModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card card glass-panel">
+      <div class="modal-header">
+        <h3 id="modalTitle" class="modal-title">Configure Profile & Website Links</h3>
+        <button id="closeModalBtn" class="icon-button" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="input-field">
+          <label for="inputGithubLabel">GitHub Button Text</label>
+          <input type="text" id="inputGithubLabel" placeholder="e.g. My GitHub">
+        </div>
+        <div class="input-field">
+          <label for="inputGithubUrl">GitHub Page URL</label>
+          <input type="url" id="inputGithubUrl" placeholder="https://github.com/your-username">
+        </div>
+
+        <div class="input-field">
+          <label for="inputWebsiteLabel">Website Button Text</label>
+          <input type="text" id="inputWebsiteLabel" placeholder="e.g. My Website">
+        </div>
+        <div class="input-field">
+          <label for="inputWebsiteUrl">Website URL</label>
+          <input type="url" id="inputWebsiteUrl" placeholder="https://yourwebsite.com">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="cancelModalBtn" class="btn btn-secondary">Cancel</button>
+        <button id="saveLinksBtn" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
