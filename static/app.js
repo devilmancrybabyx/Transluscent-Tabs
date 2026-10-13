@@ -21,11 +21,10 @@
     },
     activeColorTab: 'dark', // 'dark' | 'light'
     links: {
-      github_url: 'https://github.com',
-      github_label: 'My GitHub',
-      website_url: 'https://mywebsite.com',
-      website_label: 'My Website',
-      repo_url: 'https://github.com/Maplespe/ExplorerBlurMica'
+      github_url: 'https://github.com/devilmancrybabyx',
+      github_label: 'GitHub',
+      website_url: 'https://zohir-azouz.vercel.app/',
+      website_label: 'Website'
     }
   };
 
@@ -70,65 +69,13 @@
   const simPreviewSurface = document.getElementById('simPreviewSurface');
   const simTabHeader = document.getElementById('simTabHeader');
 
-  // Footer Links & Modal Elements
+  // Footer Links
   const userGithubBtn = document.getElementById('userGithubBtn');
   const userGithubLabel = document.getElementById('userGithubLabel');
   const userWebsiteBtn = document.getElementById('userWebsiteBtn');
   const userWebsiteLabel = document.getElementById('userWebsiteLabel');
-  const sourceRepoBtn = document.getElementById('sourceRepoBtn');
-  const editLinksBtn = document.getElementById('editLinksBtn');
-  const openLinksModalBtn = document.getElementById('openLinksModalBtn');
-
-  const linksModal = document.getElementById('linksModal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const cancelModalBtn = document.getElementById('cancelModalBtn');
-  const saveLinksBtn = document.getElementById('saveLinksBtn');
-  const inputGithubLabel = document.getElementById('inputGithubLabel');
-  const inputGithubUrl = document.getElementById('inputGithubUrl');
-  const inputWebsiteLabel = document.getElementById('inputWebsiteLabel');
-  const inputWebsiteUrl = document.getElementById('inputWebsiteUrl');
 
   const toastContainer = document.getElementById('toastContainer');
-
-  // Presets Definition
-  const PRESETS = {
-    'win11-default': {
-      effect: '2',
-      clearAddress: 'true',
-      clearBarBg: 'true',
-      clearWinUIBg: 'true',
-      showLine: 'true',
-      light: { r: '255', g: '255', b: '255', a: '200' },
-      dark: { r: '0', g: '0', b: '0', a: '120' }
-    },
-    'crystal-glass': {
-      effect: '3',
-      clearAddress: 'true',
-      clearBarBg: 'true',
-      clearWinUIBg: 'true',
-      showLine: 'false',
-      light: { r: '255', g: '255', b: '255', a: '110' },
-      dark: { r: '15', g: '23', b: '42', a: '80' }
-    },
-    'acrylic-frosted': {
-      effect: '1',
-      clearAddress: 'true',
-      clearBarBg: 'true',
-      clearWinUIBg: 'true',
-      showLine: 'true',
-      light: { r: '240', g: '240', b: '245', a: '220' },
-      dark: { r: '20', g: '25', b: '35', a: '160' }
-    },
-    'midnight-stealth': {
-      effect: '4',
-      clearAddress: 'true',
-      clearBarBg: 'true',
-      clearWinUIBg: 'true',
-      showLine: 'false',
-      light: { r: '230', g: '235', b: '245', a: '210' },
-      dark: { r: '8', g: '10', b: '18', a: '180' }
-    }
-  };
 
   // Toast Helper
   function showToast(message, type = 'info') {
@@ -314,18 +261,12 @@
     }, 400);
   }
 
-  // Render Links in Footer & Modal
+  // Render Links in Footer
   function renderLinks() {
     const l = appState.links;
     if (!l) return;
-
-    userGithubLabel.textContent = l.github_label || 'My GitHub';
-    userWebsiteLabel.textContent = l.website_label || 'My Website';
-
-    inputGithubLabel.value = l.github_label || '';
-    inputGithubUrl.value = l.github_url || '';
-    inputWebsiteLabel.value = l.website_label || '';
-    inputWebsiteUrl.value = l.website_url || '';
+    if (userGithubLabel) userGithubLabel.textContent = l.github_label || 'GitHub';
+    if (userWebsiteLabel) userWebsiteLabel.textContent = l.website_label || 'Website';
   }
 
   // Fetch initial data
@@ -339,7 +280,9 @@
 
       appState.status = status;
       appState.config = cfg;
-      appState.links = links;
+      if (links) {
+        appState.links = links;
+      }
 
       renderStatus();
       renderConfig();
@@ -400,27 +343,6 @@
     input.addEventListener('input', onSliderChange);
   });
 
-  // Presets
-  document.querySelectorAll('.preset-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const presetKey = btn.getAttribute('data-preset');
-      const preset = PRESETS[presetKey];
-      if (!preset) return;
-
-      appState.config.config.effect = preset.effect;
-      appState.config.config.clearAddress = preset.clearAddress;
-      appState.config.config.clearBarBg = preset.clearBarBg;
-      appState.config.config.clearWinUIBg = preset.clearWinUIBg;
-      appState.config.config.showLine = preset.showLine;
-      appState.config.light = { ...preset.light };
-      appState.config.dark = { ...preset.dark };
-
-      renderConfig();
-      triggerDebouncedSave();
-      showToast(`Loaded preset: ${btn.querySelector('.preset-name').textContent}`, 'info');
-    });
-  });
-
   // Apply (Do) Button Handler
   applyBtn.addEventListener('click', async () => {
     applyBtn.disabled = true;
@@ -438,7 +360,7 @@
       if (res.is_registered) {
         showToast('Translucent Blur effect applied successfully!', 'success');
       } else {
-        showToast('Registered requested. If UAC prompted, confirm to finish.', 'info');
+        showToast('Registration requested. If UAC prompted, confirm to finish.', 'info');
       }
     } catch (e) {
       console.error('Apply error:', e);
@@ -507,54 +429,6 @@
 
   userGithubBtn.addEventListener('click', () => openUrl(appState.links.github_url));
   userWebsiteBtn.addEventListener('click', () => openUrl(appState.links.website_url));
-  sourceRepoBtn.addEventListener('click', () => openUrl(appState.links.repo_url));
-
-  // Modal Open / Close
-  function openModal() {
-    inputGithubLabel.value = appState.links.github_label || '';
-    inputGithubUrl.value = appState.links.github_url || '';
-    inputWebsiteLabel.value = appState.links.website_label || '';
-    inputWebsiteUrl.value = appState.links.website_url || '';
-    linksModal.classList.remove('hidden');
-  }
-
-  function closeModal() {
-    linksModal.classList.add('hidden');
-  }
-
-  editLinksBtn.addEventListener('click', openModal);
-  openLinksModalBtn.addEventListener('click', openModal);
-  closeModalBtn.addEventListener('click', closeModal);
-  cancelModalBtn.addEventListener('click', closeModal);
-
-  linksModal.addEventListener('click', (e) => {
-    if (e.target === linksModal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !linksModal.classList.contains('hidden')) {
-      closeModal();
-    }
-  });
-
-  saveLinksBtn.addEventListener('click', async () => {
-    const updated = {
-      github_label: inputGithubLabel.value.trim() || 'My GitHub',
-      github_url: inputGithubUrl.value.trim() || 'https://github.com',
-      website_label: inputWebsiteLabel.value.trim() || 'My Website',
-      website_url: inputWebsiteUrl.value.trim() || 'https://mywebsite.com'
-    };
-
-    try {
-      const res = await api('/api/links', 'POST', updated);
-      appState.links = res.links;
-      renderLinks();
-      closeModal();
-      showToast('Profile links updated successfully!', 'success');
-    } catch (e) {
-      showToast('Failed to save links: ' + e.message, 'error');
-    }
-  });
 
   // Theme Toggle
   const savedTheme = localStorage.getItem('translucent_theme') || 'dark';

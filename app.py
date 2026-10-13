@@ -301,11 +301,10 @@ def save_config(data):
 def get_user_links():
     """Read user GitHub and Website configuration."""
     defaults = {
-        "github_url": "https://github.com",
-        "github_label": "GitHub Profile",
-        "website_url": "https://mywebsite.com",
-        "website_label": "My Website",
-        "repo_url": "https://github.com/Maplespe/ExplorerBlurMica"
+        "github_url": "https://github.com/devilmancrybabyx",
+        "github_label": "GitHub",
+        "website_url": "https://zohir-azouz.vercel.app/",
+        "website_label": "Website"
     }
     if LINKS_FILE.exists():
         try:

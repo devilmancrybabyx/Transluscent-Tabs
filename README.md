@@ -42,11 +42,9 @@
 │  [✓] Transparent Address Bar              │  Blue (B)  : [───●──────────] 0            │
 │  [✓] Transparent Navigation & Scrollbars  │  Alpha (A) : [────────●─────] 120 (47%)    │
 │  [✓] Clean WinUI / XAML Toolbar (Win 11)  │                                            │
-│  [✓] Hide TreeView Splitter Line          │  🌟 PRESETS                                │
-│                                           │  [ Win 11 Mica ]    [ Crystal Glass ]      │
-│                                           │  [ Frosted Acrylic ][ Midnight Stealth ]   │
+│  [✓] Hide TreeView Splitter Line          │                                            │
 ├───────────────────────────────────────────┴────────────────────────────────────────────┤
-│  🔗 Connect & Project Links:  [ GitHub Profile ]   [ Personal Website ]   [ Source ]   │
+│  🔗 Connect & Developer Links:        [ GitHub ]           [ Website ]                 │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -66,8 +64,8 @@
   Includes dedicated toggles to strip solid backgrounds from the modern 23H2 / 24H2 WinUI / XAML toolbars (`clearWinUIBg`), address bar (`clearAddress`), and scrollbars (`clearBarBg`).
 * **Standalone Executable & Portable**:
   No Python installation needed when using the packaged `TranslucentTabs.exe`!
-* **Configurable Author Links**:
-  Integrated buttons directly link to your **GitHub Profile** and **Personal Website**, easily customized right inside the application UI.
+* **Quick Access Links**:
+  Integrated buttons directly link to the developer's **GitHub Profile** and personal **Website** ([AZOUZ ZOHIR](https://zohir-azouz.vercel.app/)).
 
 ---
 
@@ -180,6 +178,7 @@ Transluscent-Tabs/
 
 ## 👤 Connect & Author
 
+* **Personal Website**: [AZOUZ ZOHIR — Systems Architect & Creative Technologist](https://zohir-azouz.vercel.app/)
 * **Author GitHub**: [@devilmancrybabyx](https://github.com/devilmancrybabyx)
 * **Project Repository**: [Transluscent-Tabs](https://github.com/devilmancrybabyx/Transluscent-Tabs)
 
