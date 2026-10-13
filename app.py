@@ -30,11 +30,22 @@ CONFIG_FILE = BIN_DIR / "config.ini"
 DLL_FILE = BIN_DIR / "ExplorerBlurMica.dll"
 LINKS_FILE = BASE_DIR / "user_links.json"
 
-# Safe stdout/stderr for GUI/noconsole mode
+# Safe stdout/stderr for GUI/noconsole mode and ensure UTF-8 encoding
 if sys.stdout is None:
     sys.stdout = open(os.devnull, "w")
+elif hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 if sys.stderr is None:
     sys.stderr = open(os.devnull, "w")
+elif hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 # Resolve static directory
 if (BUNDLE_DIR / "static").exists():
@@ -527,11 +538,14 @@ def main():
         sys.exit(1)
 
     url = f"http://127.0.0.1:{port}"
-    print("=" * 65)
-    print("  ✨ TranslucentTabs Studio - Explorer Blur & Mica Manager ✨")
-    print(f"  App running at: {url}")
-    print(f"  Admin Mode: {'Yes (Full privileges)' if is_admin() else 'No (Will prompt UAC when applying)'}")
-    print("=" * 65)
+    try:
+        print("=" * 65)
+        print("  [*] TranslucentTabs Studio - Explorer Blur & Mica Manager")
+        print(f"  App running at: {url}")
+        print(f"  Admin Mode: {'Yes (Full privileges)' if is_admin() else 'No (Will prompt UAC when applying)'}")
+        print("=" * 65)
+    except Exception:
+        pass
 
     if not args.no_browser:
         launch_edge_app_mode(url)
